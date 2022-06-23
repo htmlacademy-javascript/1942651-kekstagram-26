@@ -49,13 +49,13 @@ const createComments = () => ({
   name: getRandomArrayElement(NAMES)
 });
 
- const createDescription = () => ({
-id: ++id,
-url: `photos/${id}.jpg`,
-description: getRandomArrayElement(DESCPTIONS),
-likes: getRandom(15, 200),
-comments: createComments()
- });
- const photoDescription = Array.from({length: 25}, createDescription);
+const createDescription = () => ({
+  id: ++id,
+  url: `photos/${id}.jpg`,
+  description: getRandomArrayElement(DESCPTIONS),
+  likes: getRandom(15, 200),
+  comments: createComments()
+});
+const photoDescription = Array.from({length: 25}, createDescription);
 
-console.log(photoDescription);
+// console.log(photoDescription);
