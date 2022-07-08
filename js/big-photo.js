@@ -1,4 +1,4 @@
-import {photoDescription} from './data.js'
+import {photoDescription} from './data.js';
 
 const body = document.querySelector('body');
 const bigPictureContainer = document.querySelector('.big-picture');
@@ -11,7 +11,7 @@ const commentElement = commentsListElement.querySelector('.social__comment');
 const commentCountDivElement = bigPictureContainer.querySelector('.social__comment-count');
 const commentCountElement = bigPictureContainer.querySelector('.comments-count');
 const newCommentLoaderElement = bigPictureContainer.querySelector('.comments-loader');
-const countComents = bigPictureContainer.querySelector('.js__rendered-comments');
+// const countComents = bigPictureContainer.querySelector('.js__rendered-comments');
 
 
 const onBigPictureEscKeydown = (evt) => {

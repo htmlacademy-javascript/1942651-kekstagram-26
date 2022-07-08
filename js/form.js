@@ -1,4 +1,4 @@
-import {checkMaxLength} from './data.js'
+import {checkMaxLength} from './data.js';
 
 const uploadInputElement = document.querySelector('.img-upload__input');
 const imgOverlay = document.querySelector('.img-upload__overlay');
@@ -10,15 +10,15 @@ const COMMENT_LENGTH = 140;
 const HASH_TAG_REGULAR_EXPRESSION = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 
-uploadInputElement.addEventListener('change', function () {
+uploadInputElement.addEventListener('change', () => {
   imgOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
 });
 
-closeButtonElement.addEventListener('click', function () {
+closeButtonElement.addEventListener('click', () => {
   document.body.classList.remove('modal-open');
   imgOverlay.classList.add('hidden');
-  formElement.reset();
+  form.reset();
 });
 
 
