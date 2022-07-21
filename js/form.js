@@ -1,6 +1,6 @@
 import {checkMaxLength, showAlert} from './data.js';
 import {sendData} from './api.js';
-// import {clearScaleValue, resetEffect} from './filters';
+import {clearScaleValue, resetEffect} from './filters';
 import {successModalOpen, errorModalOpen} from './messages.js';
 
 const uploadInputElement = document.querySelector('.img-upload__input');
