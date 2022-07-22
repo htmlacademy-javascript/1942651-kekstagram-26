@@ -50,5 +50,29 @@ const createDescription = () => ({
   comments: Array.from({length: getRandom(1, 25)}, createComments)
 });
 const photoDescription = Array.from({length: 25}, createDescription);
+
+const ALERT_SHOW_TIME = 3000;
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '15px 3px';
+  alertContainer.style.fontSize = '26px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'tomato';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
 export {photoDescription};
 export {checkMaxLength};
+export {showAlert};
