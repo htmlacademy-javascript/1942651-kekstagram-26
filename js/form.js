@@ -1,7 +1,10 @@
-import {checkMaxLength, showAlert} from './data.js';
+import {showAlert, checkMaxLength} from './util.js';
 import {sendData} from './api.js';
-import {clearScaleValue, resetEffect} from './filters';
-import {successModalOpen, errorModalOpen} from './messages.js';
+import {openSuccessModal, openErrorModal} from './messages.js';
+import {clearScaleValue, resetEffect} from './effects.js';
+
+const COMMENT_LENGTH = 140;
+const HASH_TAG_REGULAR_EXPRESSION = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 const uploadInputElement = document.querySelector('.img-upload__input');
 const imgOverlay = document.querySelector('.img-upload__overlay');
@@ -10,8 +13,6 @@ const form = document.querySelector('.img-upload__form');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
 const submitButton = form.querySelector('.img-upload__submit');
-const COMMENT_LENGTH = 140;
-const HASH_TAG_REGULAR_EXPRESSION = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 const resetForm = () => {
   uploadInputElement.value = '';
@@ -27,7 +28,7 @@ uploadInputElement.addEventListener('change', () => {
 closeButtonElement.addEventListener('click', () => {
   document.body.classList.remove('modal-open');
   imgOverlay.classList.add('hidden');
-  // form.reset();
+  form.reset();
   clearScaleValue();
   resetForm();
   resetEffect();
@@ -109,12 +110,12 @@ const userFormSubmit = (onSuccess) => {
         () => {
           onSuccess();
           unblockSubmitButton();
-          successModalOpen();
+          openSuccessModal();
         },
         () => {
           showAlert('Не удалось отправить форму. Попробуйте ещё раз');
           unblockSubmitButton();
-          errorModalOpen();
+          openErrorModal();
         },
         new FormData(evt.target),
       );

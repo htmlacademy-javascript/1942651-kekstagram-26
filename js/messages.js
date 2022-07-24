@@ -1,3 +1,5 @@
+const ESC_KEY_CODE = 27;
+
 const successMessageClone = document.querySelector('#success').content.querySelector('.success');
 const successMessage = successMessageClone.cloneNode(true);
 const successButton = successMessage.querySelector('.success__button');
@@ -7,63 +9,60 @@ const errorButton = errorMessage.querySelector('.error__button');
 const body = document.querySelector('body');
 
 
-// Открытие и закрытие сообщения об удачной отправке
-const popupSuccessClose = (evt) => {
-  if (evt.KeyCode === 27) {
+const successModalKeydownHadler = (evt) => {
+  if (evt.keyCode === ESC_KEY_CODE) {
     evt.preventDefault();
-    successModalClose();
+    closeSuccessModal();
   }
 };
 
-//Проверка на нажатие на область
 const successModalClick = (evt) => {
   if (evt.target.matches('.success')) {
-    successModalClose();
+    closeSuccessModal();
   }
 };
 
-function successModalOpen () {
+function openSuccessModal () {
   body.append(successMessage);
   body.classList.add('modal-open');
-  document.addEventListener('keydown', popupSuccessClose);
+  document.addEventListener('keydown', successModalKeydownHadler);
   document.addEventListener('click', successModalClick);
-  successButton.addEventListener('click', successModalClose);
+  successButton.addEventListener('click', closeSuccessModal);
 }
 
-function successModalClose () {
+function closeSuccessModal () {
   successMessage.remove();
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', popupSuccessClose);
+  document.removeEventListener('keydown', successModalKeydownHadler);
 }
 
 
-// Открытие и закрытие сообщения о неудачной отправке
-const onPopupErrorClose = (evt) => {
-  if (evt.KeyCode === 27) {
+const errorModalKeydownHandler = (evt) => {
+  if (evt.keyCode === ESC_KEY_CODE) {
     evt.preventDefault();
-    errorModalClose();
+    closeErrorModal();
   }
 };
 
-const errorModalAreaClick = (evt) => {
+const clickErrorModalArea = (evt) => {
   if (evt.target.matches('.error')) {
-    errorModalClose();
+    closeErrorModal();
   }
 };
 
-function errorModalOpen () {
+function openErrorModal () {
   errorMessage.style.zIndex = '99';
   body.append(errorMessage);
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onPopupErrorClose);
-  document.addEventListener('click', errorModalAreaClick);
-  errorButton.addEventListener('click', errorModalClose);
+  document.addEventListener('keydown', errorModalKeydownHandler);
+  document.addEventListener('click', clickErrorModalArea);
+  errorButton.addEventListener('click', closeErrorModal);
 }
 
-function errorModalClose () {
+function closeErrorModal () {
   errorMessage.remove();
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onPopupErrorClose);
+  document.removeEventListener('keydown', errorModalKeydownHandler);
 }
 
-export {successModalOpen, errorModalOpen};
+export {openSuccessModal, openErrorModal};
