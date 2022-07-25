@@ -1,21 +1,24 @@
-import {createCommentList} from './big-photo.js';
+import {openBigPhoto} from './big-photo.js';
 
-const similarListElement = document.querySelector('.pictures');
-const picture = document.querySelector('#picture').content.querySelector('.picture');
-const pictureFragment = document.createDocumentFragment();
+const picturesElement = document.querySelector('.pictures');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const imageFilterContainer = document.querySelector('.img-filters');
 
 const createPictures = (similarPicture) => {
-  similarPicture.forEach(({url, likes, comments, description}) => {
-    const pictureElement = picture.cloneNode(true);
-    pictureElement.querySelector('.picture__img').src = url;
-    pictureElement.querySelector('.picture__likes').textContent = likes;
-    pictureElement.querySelector('.picture__comments').textContent = comments.length;
+  const pictureFragment = document.createDocumentFragment();
+  similarPicture.forEach((picture) => {
+    const pictureElement = pictureTemplate.cloneNode(true);
+    pictureElement.querySelector('.picture__img').src = picture.url;
+    pictureElement.querySelector('.picture__likes').textContent = picture.likes;
+    pictureElement.querySelector('.picture__comments').textContent = picture.comments.length;
     pictureFragment.appendChild(pictureElement);
     pictureElement.addEventListener('click', () => {
-      createCommentList({url, likes, comments, description});
+      openBigPhoto(picture);
     });
   });
-  similarListElement.appendChild(pictureFragment);
+  picturesElement.querySelectorAll('.picture').forEach((element) => {element.remove();});
+  picturesElement.appendChild(pictureFragment);
+  imageFilterContainer.classList.remove('img-filters--inactive');
 };
 
 export {createPictures};
