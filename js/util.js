@@ -1,8 +1,5 @@
 const checkMaxLength = (string, maxLength) => string.length <= maxLength;
 
-const getRandom = (min, max) =>Math.floor(Math.random() * (max - min + 1)) + min;
-
-getRandom();
 
 const ALERT_SHOW_TIME = 3000;
 const showAlert = (message) => {
