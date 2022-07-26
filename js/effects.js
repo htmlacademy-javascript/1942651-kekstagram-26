@@ -121,7 +121,7 @@ const resetEffect = () => {
 const effectChangeHandler = (evt) => {
   const currentFilter = evt.target.value;
   effectSlider.classList.remove('hidden');
-
+  effectLevel.classList.remove('hidden');
 
   if (effectSlider.noUiSlider) {
     effectSlider.noUiSlider.destroy();
@@ -129,6 +129,7 @@ const effectChangeHandler = (evt) => {
 
   if (currentFilter === 'none') {
     resetEffect();
+    effectLevel.classList.add('hidden');
   } else {
     noUiSlider.create(effectSlider, EFFECTS[currentFilter]);
     photoElement.className = `effects__preview--${currentFilter}`;

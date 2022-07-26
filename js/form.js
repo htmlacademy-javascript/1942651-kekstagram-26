@@ -13,6 +13,7 @@ const form = document.querySelector('.img-upload__form');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
 const submitButton = form.querySelector('.img-upload__submit');
+const effectLevel = document.querySelector('.img-upload__effect-level');
 
 const resetForm = () => {
   uploadInputElement.value = '';
@@ -23,6 +24,7 @@ const resetForm = () => {
 uploadInputElement.addEventListener('change', () => {
   imgOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  effectLevel.classList.add('hidden');
 });
 
 closeButtonElement.addEventListener('click', () => {
