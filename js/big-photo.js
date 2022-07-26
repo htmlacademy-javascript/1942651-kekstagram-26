@@ -23,7 +23,7 @@ const documentKeydownHandler = (evt) => {
 function closeBigPicture () {
   bigPictureContainer.classList.add('hidden');
   body.classList.remove('modal-open');
-
+  commentCountDivElement.innerHTML = '';
   document.removeEventListener('keydown', documentKeydownHandler);
 }
 
@@ -65,6 +65,7 @@ const loadMoreClickHandler = () => {
 const openBigPhoto = (picture) => {
   bigPictureContainer.classList.remove('hidden');
   body.classList.add('modal-open');
+  commentCountDivElement.classList.remove('hidden');
   imgElement.src = picture.url;
   likesCountElement.textContent = picture.likes;
   descriptionElement.textContent = picture.description;
